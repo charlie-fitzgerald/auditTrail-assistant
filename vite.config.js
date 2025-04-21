@@ -9,7 +9,8 @@ export default defineConfig(() => {
     plugins: [react()],
     server: {
       port: 8301,
-      allowedHosts: ['.apps-tunnel.monday.app']
+      strictPort: true,
+      allowedHosts: ["f9b6-157-97-134-193.ngrok-free.app", "7bda89734185.apps-tunnel.monday.app"] // ✅ allow ngrok + others
     }
   };
 });

@@ -10,18 +10,18 @@ import { AttentionBox } from "@vibe/core";
 const monday = mondaySdk();
 
 const App = () => {
+  console.log("🔥🔥🔥 React app mounted 🔥🔥🔥");
   const [context, setContext] = useState();
 
   useEffect(() => {
-    // Notice this method notifies the monday platform that user gains a first value in an app.
-    // Read more about it here: https://developer.monday.com/apps/docs/mondayexecute#value-created-for-user/
     monday.execute("valueCreatedForUser");
-
-    // TODO: set up event listeners, Here`s an example, read more here: https://developer.monday.com/apps/docs/mondaylisten/
+  
     monday.listen("context", (res) => {
+      console.log("✅ Context received:", res.data); // <-- ADD THIS
       setContext(res.data);
     });
   }, []);
+  
 
   //Some example what you can do with context, read more here: https://developer.monday.com/apps/docs/mondayget#requesting-context-and-settings-data
   const attentionBoxText = `Hello, your user_id is: ${
@@ -31,6 +31,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <h1 style={{ fontSize: "3rem", color: "red" }}>🎯 MOUNTED INSIDE MONDAY</h1>
       <AttentionBox
         title="Hello Monday Apps!"
         text={attentionBoxText}
